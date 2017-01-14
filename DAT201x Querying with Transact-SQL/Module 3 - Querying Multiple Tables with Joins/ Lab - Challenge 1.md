@@ -1,4 +1,3 @@
-### Querying Multiple Tables with Joins
 > **Challenge 1: Generate Invoice Reports**   
 Adventure Works Cycles sells directly to retailers, who must be invoiced for their orders. You have been
 tasked with writing a query to generate a list of invoices to be sent to customers.
