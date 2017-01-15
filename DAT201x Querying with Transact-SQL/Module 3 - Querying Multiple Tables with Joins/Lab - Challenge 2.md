@@ -48,3 +48,27 @@ that returns a column of customer IDs for customers who have never placed an ord
 product IDs for products that have never been ordered. Each row with a customer ID should have a
 NULL product ID (because the customer has never ordered a product) and each row with a product ID
 should have a NULL customer ID (because the product has never been ordered by a customer).
+```sql
+SELECT	c.CustomerID
+		,p.ProductID
+FROM SalesLT.Customer AS c
+FULL JOIN SalesLT.SalesOrderHeader AS oh
+	ON c.CustomerID = oh.CustomerID
+FULL JOIN SalesLT.SalesOrderDetail AS od
+	ON oh.SalesOrderID = od.SalesOrderID
+FULL JOIN SalesLT.Product AS p
+	ON p.ProductID = od.ProductID
+WHERE c.CustomerID IS NULL OR p.ProductID IS NULL
+```
+```sql
+SELECT c.CustomerID, p.ProductID
+FROM SalesLT.Customer AS c
+FULL JOIN SalesLT.SalesOrderHeader AS oh
+ON c.CustomerID = oh.CustomerID
+FULL JOIN SalesLT.SalesOrderDetail AS od
+ON od.SalesOrderID = oh.SalesOrderID
+FULL JOIN SalesLT.Product AS p
+ON p.ProductID = od.ProductID
+WHERE oh.SalesOrderID IS NULL
+ORDER BY ProductID, CustomerID;
+```
