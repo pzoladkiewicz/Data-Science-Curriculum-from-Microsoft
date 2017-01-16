@@ -1,4 +1,4 @@
-> **Challenge 1: Retrieve Customer Addresses**
+> **Challenge 1: Retrieve Customer Addresses**   
 Customers can have two kinds of address: a main office address and a shipping address. The accounts
 department want to ensure that the main office address is always used for billing, and have asked you to
 write a query that clearly identifies the different types of address for each customer.
