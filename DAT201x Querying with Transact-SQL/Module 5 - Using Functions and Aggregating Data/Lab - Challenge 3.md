@@ -1,4 +1,4 @@
-> **Challenge 3: Aggregate Product Sales**
+> **Challenge 3: Aggregate Product Sales**   
 The product manager would like aggregated information about product sales.
 
 ```
@@ -33,5 +33,13 @@ ORDER BY TotalRevenue DESC
 Modify the previous query to only include only product groups with a total sales value greater than
 $20,000.
 ```sql
-
+SELECT	p.Name
+		,SUM(sod.LineTotal) AS TotalRevenue
+FROM SalesLT.Product AS p
+JOIN SalesLT.SalesOrderDetail AS sod
+	ON p.ProductID = sod.ProductID
+WHERE p.ListPrice > 1000
+GROUP BY p.Name
+HAVING SUM(sod.LineTotal) > 20000
+ORDER BY TotalRevenue DESC
 ```
