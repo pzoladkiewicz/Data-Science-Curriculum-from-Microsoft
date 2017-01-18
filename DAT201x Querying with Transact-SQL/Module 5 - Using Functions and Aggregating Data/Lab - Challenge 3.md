@@ -20,7 +20,14 @@ ORDER BY TotalRevenue DESC
 ####2. Filter the product sales list to include only products that cost over $1,000
 Modify the previous query to include sales totals for products that have a list price of more than $1000.
 ```sql
-
+SELECT	p.Name
+		,SUM(sod.LineTotal) AS TotalRevenue
+FROM SalesLT.Product AS p
+JOIN SalesLT.SalesOrderDetail AS sod
+	ON p.ProductID = sod.ProductID
+WHERE p.ListPrice > 1000
+GROUP BY p.Name
+ORDER BY TotalRevenue DESC
 ```
 ####3. Filter the product sales groups to include only total sales over $20,000
 Modify the previous query to only include only product groups with a total sales value greater than
