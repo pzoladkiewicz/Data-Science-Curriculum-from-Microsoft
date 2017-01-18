@@ -20,7 +20,12 @@ Extend your query to include columns named SellStartYear and SellStartMonth cont
 month in which Adventure Works started selling each product. The month should be displayed as the
 month name (for example, ‘January’).
 ```sql
-
+SELECT	p.ProductID
+		,UPPER(p.Name) AS ProductName
+		,ROUND(p.Weight, 0) AS ApproxWeight
+		,YEAR(p.SellStartDate) AS SellStartYear
+		,DATENAME(MONTH, p.SellStartDate) AS SellStartMonth
+FROM SalesLT.Product AS p
 ```
 ####3. Extract product types from product numbers   
 Extend your query to include a column named ProductType that contains the leftmost two characters
