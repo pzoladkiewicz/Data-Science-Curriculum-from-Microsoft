@@ -31,7 +31,13 @@ FROM SalesLT.Product AS p
 Extend your query to include a column named ProductType that contains the leftmost two characters
 from the product number.
 ```sql
-
+SELECT	p.ProductID
+		,UPPER(p.Name) AS ProductName
+		,ROUND(p.Weight, 0) AS ApproxWeight
+		,YEAR(p.SellStartDate) AS SellStartYear
+		,DATENAME(MONTH, p.SellStartDate) AS SellStartMonth
+		,LEFT(p.ProductNumber, 2) AS ProductType
+FROM SalesLT.Product AS p
 ```
 ####4. Retrieve only products with a numeric size   
 Extend your query to filter the product returned so that only products with a numeric size are included
