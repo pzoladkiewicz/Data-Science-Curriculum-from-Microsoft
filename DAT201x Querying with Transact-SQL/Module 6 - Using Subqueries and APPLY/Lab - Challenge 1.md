@@ -40,7 +40,15 @@ WHERE ListPrice >= 100 AND
 Retrieve the product ID, name, cost, and list price for each product along with the average unit price for
 which that product has been sold.
 ```sql
-
+SELECT	p.ProductID
+		,p.Name
+		,p.StandardCost
+		,p.ListPrice
+		,(SELECT AVG(sod.UnitPrice)
+		FROM SalesLT.SalesOrderDetail AS sod
+		WHERE sod.ProductID = p.ProductID		
+		) AS AverageSellingPrice
+FROM SalesLT.Product AS p
 ```
 ####4. Retrieve products that have an average selling price that is lower than the cost   
 Filter your previous query to include only products where the cost price is higher than the average
