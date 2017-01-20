@@ -12,7 +12,14 @@ Tip: Review the documentation for subqueries in Subquery Fundamentals.
 Retrieve the product ID, name, and list price for each product where the list price is higher than the
 average unit price for all products that have been sold.
 ```sql
-
+SELECT	ProductID
+		,Name
+		,ListPrice
+FROM SalesLT.Product
+WHERE ListPrice > (
+					SELECT AVG(UnitPrice)
+					FROM SalesLT.SalesOrderDetail
+					)
 ```
 ####2. Retrieve Products with a list price of $100 or more that have been sold for less than
 $100   
