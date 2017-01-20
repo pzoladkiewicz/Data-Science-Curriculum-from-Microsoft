@@ -54,5 +54,19 @@ FROM SalesLT.Product AS p
 Filter your previous query to include only products where the cost price is higher than the average
 selling price
 ```sql
-
+SELECT	p.ProductID
+		,p.Name
+		,p.StandardCost
+		,p.ListPrice
+		,(SELECT AVG(sod.UnitPrice)
+		FROM SalesLT.SalesOrderDetail AS sod
+		WHERE sod.ProductID = p.ProductID
+		) AS AverageSellingPrice
+FROM SalesLT.Product AS p
+WHERE p.StandardCost > 
+		(
+		SELECT AVG(sod.UnitPrice)
+		FROM SalesLT.SalesOrderDetail AS sod
+		WHERE sod.ProductID = p.ProductID
+		)
 ```
