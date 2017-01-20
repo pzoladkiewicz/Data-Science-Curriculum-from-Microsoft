@@ -21,12 +21,20 @@ WHERE ListPrice > (
 					FROM SalesLT.SalesOrderDetail
 					)
 ```
-####2. Retrieve Products with a list price of $100 or more that have been sold for less than
-$100   
+####2. Retrieve Products with a list price of $100 or more that have been sold for less than $100   
 Retrieve the product ID, name, and list price for each product where the list price is $100 or more, and
 the product has been sold for less than $100.
 ```sql
-
+SELECT	ProductID
+		,Name
+		,ListPrice
+FROM SalesLT.Product
+WHERE ListPrice >= 100 AND
+      ProductID IN (
+			SELECT ProductID
+			FROM SalesLT.SalesOrderDetail
+			WHERE UnitPrice < 100
+			)
 ```
 ####3. Retrieve the cost, list price, and average selling price for each product   
 Retrieve the product ID, name, cost, and list price for each product along with the average unit price for
