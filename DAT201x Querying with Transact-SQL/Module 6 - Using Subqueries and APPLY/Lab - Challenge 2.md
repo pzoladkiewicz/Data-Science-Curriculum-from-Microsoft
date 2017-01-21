@@ -10,7 +10,13 @@ Tip: Review the documentation for the APPLY operator in Using APPLY.
 Retrieve the sales order ID, customer ID, first name, last name, and total due for all sales orders from
 the SalesLT.SalesOrderHeader table and the dbo.ufnGetCustomerInformation function.
 ```sql
-
+SELECT	soh.SalesOrderID
+		,func.CustomerID
+		,func.FirstName
+		,func.LastName
+		,soh.TotalDue
+FROM SalesLT.SalesOrderHeader AS soh
+CROSS APPLY dbo.ufnGetCustomerInformation(soh.CustomerID) AS func
 ```
 ####2. Retrieve customer address information   
 Retrieve the customer ID, first name, last name, address line 1 and city for all customers from the
