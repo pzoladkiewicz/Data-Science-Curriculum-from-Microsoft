@@ -23,5 +23,13 @@ Retrieve the customer ID, first name, last name, address line 1 and city for all
 SalesLT.Address and SalesLT.CustomerAddress tables, and the dbo.ufnGetCustomerInformation
 function.
 ```sql
-
+SELECT	ca.CustomerID
+		,func.FirstName
+		,func.LastName
+		,a.AddressLine1
+		,a.City
+FROM SalesLT.Address AS a
+JOIN SalesLT.CustomerAddress AS ca
+	ON a.AddressID = ca.AddressID
+CROSS APPLY dbo.ufnGetCustomerInformation(ca.CustomerID) AS func
 ```
