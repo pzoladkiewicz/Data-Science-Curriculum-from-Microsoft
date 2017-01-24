@@ -42,5 +42,11 @@ which returns a table of product categories (for example ‘Road Bikes’) and p
 example ‘Bikes’). Write a query that uses this function to return a list of all products including their
 parent category and category.
 ```sql
-
+SELECT	p.Name AS ProductName
+		,func.ProductCategoryName AS ProductCategory
+		,func.ParentProductCategoryName AS ParentProductCategory
+FROM SalesLT.Product AS p
+JOIN dbo.ufnGetAllCategories() AS func
+	ON p.ProductCategoryID = func.ProductCategoryID
+ORDER BY ParentProductCategory, ProductCategory, ProductName
 ```
