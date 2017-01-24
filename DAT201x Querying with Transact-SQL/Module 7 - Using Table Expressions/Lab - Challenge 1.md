@@ -23,7 +23,18 @@ Create a table variable and populate it with a list of distinct colors from the 
 use the table variable to filter a query that returns the product ID, name, and color from the
 SalesLT.Product table so that only products with a color listed in the table variable are returned.
 ```sql
+DECLARE @Kolor AS TABLE
+(Color nvarchar(15))
 
+INSERT INTO @Kolor(Color)
+	SELECT DISTINCT Color
+	FROM SalesLT.Product
+
+SELECT	ProductID
+		,Name
+		,Color
+FROM SalesLT.Product
+WHERE Color IN (SELECT Color FROM @Kolor)
 ```
 ####3. Retrieve product parent categories   
 The AdventureWorksLT database includes a table-valued function named dbo.ufnGetAllCategories,
