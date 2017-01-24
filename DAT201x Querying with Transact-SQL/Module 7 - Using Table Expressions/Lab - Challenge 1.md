@@ -6,7 +6,14 @@ queries that retrieve information about these products
 Retrieve the product ID, product name, product model name, and product model summary for each
 product from the SalesLT.Product table and the SalesLT.vProductModelCatalogDescription view.
 ```sql
-
+SELECT	p.ProductID
+		,p.Name AS ProductName
+		,vPMCD.Name AS ProductModel
+		,vPMCD.Summary AS Description
+FROM SalesLT.Product AS p
+JOIN SalesLT.vProductModelCatalogDescription AS vPMCD
+	ON p.ProductModelID = vPMCD.ProductModelID
+ORDER BY p.ProductID
 ```
 ####2. Create a table of distinct colors   
 ```
