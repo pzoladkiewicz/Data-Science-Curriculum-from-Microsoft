@@ -1,4 +1,4 @@
-> **Challenge 2: Retrieve Customer Sales Revenue**
+> **Challenge 2: Retrieve Customer Sales Revenue**   
 Each Adventure Works customer is a retail company with a named contact. You must create queries that
 return the total revenue for each customer, including the company and customer contact names.
 
