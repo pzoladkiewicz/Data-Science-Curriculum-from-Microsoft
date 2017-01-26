@@ -11,5 +11,32 @@ Retrieve a list of customers in the format Company (Contact Name) together with 
 that customer. Use a derived table or a common table expression to retrieve the details for each sales
 order, and then query the derived table or CTE to aggregate and group the data.
 ```sql
+WITH sales_CTE(CompanyContact, TotalDue)
+AS
+(
+SELECT	CONCAT(c.CompanyName, '(', c.FirstName, c.LastName, ')')
+		,soh.TotalDue
+FROM SalesLT.Customer AS c
+JOIN SalesLT.SalesOrderHeader AS soh
+	ON c.CustomerID = soh.CustomerID
+)
 
+SELECT  CompanyContact
+        ,SUM(TotalDue) AS TotalRevenue
+FROM sales_CTE
+GROUP BY CompanyContact
+```
+```sql
+SELECT	CompanyContact
+		,SUM(TotalDue) AS TotalRevenue
+FROM
+(
+	SELECT	CONCAT(c.CompanyName, '(', c.FirstName, c.LastName, ')')
+			,soh.TotalDue
+	FROM SalesLT.Customer AS c
+	JOIN SalesLT.SalesOrderHeader AS soh
+		ON c.CustomerID = soh.CustomerID)
+	AS Sales_DT(CompanyContact, TotalDue
+)
+GROUP BY CompanyContact
 ```
