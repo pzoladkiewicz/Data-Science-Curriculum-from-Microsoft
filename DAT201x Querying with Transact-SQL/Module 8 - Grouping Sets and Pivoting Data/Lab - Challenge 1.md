@@ -35,7 +35,9 @@ GROUP BY
 ORDER BY a.CountryRegion, a.StateProvince;
 ```
 ####2. Indicate the grouping level in the results
+```
 Tip: Review the documentation for the GROUPING_ID function in the Transact-SQL Language Reference.
+```
 Modify your query to include a column named Level that indicates at which level in the total,
 country/region, and state/province hierarchy the revenue figure in the row is aggregated. For example,
 the grand total row should contain the value ‘Total’, the row showing the subtotal for United States
